@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManoharGella</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="itme.png">
-    <style>
-        /* Custom styles */
-        body {
-            animation: gradientAnimation 10s infinite alternate;
-            background-size: 400% 400%;
-            overflow: hidden;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <title>My Dark Aesthetic Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for social icons -->
 </head>
-<body class="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-    <div class="max-w-lg p-8 bg-gray-800 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold text-white mb-4">Manohar Gella</h1>
-        
-        <div class="circle mx-auto mb-4">
-            <img src="itme.png" alt="Your Photo">
+<body>
+    <header>
+        <h1>Manohar Gella</h1>
+        <div class="image-container">
+            <img src="funk.PNG" alt="Your Image">
         </div>
-        <div class="flex justify-center space-x-4 mb-4">
-            <a href="https://www.instagram.com/manohargella/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="w-8"></a>
-            <a href="https://www.linkedin.com/in/manohar-gella-2926bb24b/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="w-8"></a>
-            <a href="https://x.com/imanohargella" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1920px-Logo_of_Twitter.svg.png" alt="Example" class="w-8"></a>
-            <!-- Replace the placeholders with actual URLs of icons -->
-        </div>
-        <!-- Add more sections or content here -->
-        <p class="text-white mb-4"><a href="mailto:imanohargella@gmail.com" style="color: rgb(43, 226, 205);">imanohargella@gmail.com</a></p>
+    </header>
 
-    </div>
+    <section class="bio">
+        <h2>About Me</h2>
+        <p>Hi, I'm Manohar Gella, a Computer Science student with a no passion for coding and technology.</p>
+        <p>Career Experience: Web Dev intern - TechFest IIT BOMBAY</p>
+        <p>Current Internship: Frontend dev at TUFT</p>
+
+    </section>
+
+    <section class="code-cards">
+        <h2>My Code</h2>
+        
+        <a href="p1.html" class="card">
+            <div>
+                <h3>Project 1</h3>
+                <p>Code snippet or project description</p>
+            </div>
+        </a>
+        
+        <a href="p2.html" class="card">
+            <div>
+                <h3>Project 2</h3>
+                <p>Code snippet or project description</p>
+            </div>
+        </a>
+    </section>
+
+    <footer>
+        <h3>Connect with Me</h3>
+        <div class="social-links">
+            <a href="https://twitter.com/imanohargella" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/Manohar-Gella" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/manohar-gella-2926bb24b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:manoharcodes@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-<!--  -->

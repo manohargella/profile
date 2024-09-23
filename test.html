@@ -3,13 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Error Page</title>
-    <link rel="stylesheet" href="test.css">
+    <title>Next-Gen 404 Error Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animation for smoother hovering effect */
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="error-message">Server error - NIGNIX 404 Bad Gateway</div>
-    <div id="name">Manohar Gella</div>
-    <button class="home-btn" onclick="goHome()">Go to Home</button>
-    <script src="test.js"></script>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white relative overflow-hidden">
+    <!-- Glowing Gradient Background Circle -->
+    <div class="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-600 via-pink-600 to-teal-500 rounded-full opacity-20 blur-3xl"></div>
+
+    <!-- Error Message at the Top -->
+    <div class="absolute top-16 text-center text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-500 drop-shadow-lg">
+        Server error - NIGNIX 404 Bad Gateway
+    </div>
+
+    <!-- Hovering Name -->
+    <div id="name" class="absolute text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-500 to-blue-600 animate-pulse tracking-wide">
+        Manohar Gella
+    </div>
+
+    <!-- Go to Home Button -->
+    <button class="absolute bottom-16 px-8 py-4 bg-gradient-to-r from-teal-400 to-blue-600 hover:from-teal-500 hover:to-blue-700 text-gray-900 font-semibold rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+        Go to Home
+    </button>
+
+    <script>
+        const nameDiv = document.getElementById('name');
+
+        function randomPosition() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const x = Math.floor(Math.random() * (screenWidth - nameDiv.clientWidth));
+            const y = Math.floor(Math.random() * (screenHeight - nameDiv.clientHeight));
+
+            nameDiv.style.left = `${x}px`;
+            nameDiv.style.top = `${y + 80}px`; // Adjusting to avoid the error message
+        }
+
+        setInterval(randomPosition, 3000); // Change position every 3 seconds
+
+        function goHome() {
+            window.location.href = '/'; // Replace with the actual home page URL
+        }
+    </script>
 </body>
 </html>

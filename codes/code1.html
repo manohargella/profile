@@ -1,10 +1,58 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Snippet with Copy Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styling for line numbers */
+        .line-numbers {
+            counter-reset: line;
+        }
+        .line-numbers code {
+            display: block;
+            position: relative;
+            padding-left: 2rem;
+        }
+        .line-numbers code::before {
+            counter-increment: line;
+            content: counter(line);
+            position: absolute;
+            left: 0;
+            color: #9CA3AF; /* Tailwind's gray-400 */
+            text-align: right;
+            width: 1.5rem;
+            padding-right: 0.5rem;
+        }
+    </style>
 </head>
-<body>
-    hello there
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg w-11/12 max-w-2xl">
+        <h1 class="text-2xl mb-4 font-semibold text-center">Java Program - 1</h1>
+        <div class="relative">
+            <pre class="line-numbers"><code id="codeSnippet">
+        // Sample C++ Code
+        #include<iostream>
+        using namespace std;
+        int main() {
+            cout << "Hello, World!";
+            return 0;
+        }
+        </code></pre>
+            <button class="copy-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mt-4 absolute top-0 right-0" onclick="copyCode()">Copy Code</button>
+        </div>
+    </div>
+
+    <script>
+        function copyCode() {
+            var code = document.getElementById("codeSnippet").innerText;
+            navigator.clipboard.writeText(code).then(function() {
+                alert("Code copied to clipboard!");
+            }).catch(function(error) {
+                alert("Failed to copy code: " + error);
+            });
+        }
+    </script>
 </body>
 </html>

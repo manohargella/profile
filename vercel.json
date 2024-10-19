@@ -1,4 +1,3 @@
-
 {
   "rewrites": [
     {
@@ -9,8 +8,16 @@
   "routes": [
     {
       "src": "/.*",
-      "status": "NOT_FOUND",
+      "status": 404,
       "dest": "/404.html"
     }
-  ]
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "outputDirectory": "public",
+  "framework": "static"
 }

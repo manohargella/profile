@@ -26,10 +26,6 @@
       max-height: 450px;
       overflow-y: auto;
     }
-    .disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
     .popup {
       position: fixed;
       top: 50%;
@@ -51,7 +47,8 @@
   <div id="popup" class="popup">You can't do fool</div>
 
   <div class="container">
-    <h1 class="text-3xl font-bold mb-6 text-center">Manohar's No Fap and Porn Streak Tracker</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">No Fap Streak Tracker</h1>
+
     <div id="streak" class="text-center text-xl font-semibold text-green-600 mb-2">Current Streak: 0 Days</div>
     <div id="missed" class="text-center text-xl font-semibold text-red-600 mb-4">Missed Days: 0</div>
 
@@ -110,11 +107,11 @@
       const currentDate = new Date(startDate);
       currentDate.setDate(currentDate.getDate() + dayIndex);
 
-      const attendanceDate = currentDate.toDateString();
       const todayDate = today.toDateString();
+      const attendanceDate = currentDate.toDateString();
 
       // Prevent marking for future or past dates
-      if (currentDate > today || currentDate < today) {
+      if (currentDate.toDateString() !== todayDate) {
         checkbox.checked = false;
         showPopup();
         return;
@@ -137,11 +134,6 @@
       updateTracker();
     }
 
-    // Function to disable future checkboxes
-    function disableFutureAttendance(currentDate) {
-      return currentDate > today;
-    }
-
     // Function to populate table with 30 days
     function populateTable() {
       attendanceTable.innerHTML = ''; // Clear table first
@@ -154,19 +146,25 @@
         const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         const status = savedAttendance[attendanceDate] || 'Not Marked';
 
-        const row = document.createElement('tr');
         const isToday = currentDate.toDateString() === today.toDateString();
-        const isPast = currentDate < today;
         const isChecked = savedAttendance[attendanceDate] === 'Present';
+
+        const row = document.createElement('tr');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = isChecked;
+        checkbox.disabled = !isToday; // Disable for past/future dates
+        checkbox.addEventListener('click', () => markAttendance(i, checkbox)); // Add event listener for today's checkbox
 
         row.innerHTML = `
           <td class="border border-gray-300 py-2 px-4 text-center">${currentDate.toLocaleDateString()}</td>
           <td class="border border-gray-300 py-2 px-4 text-center">${dayOfWeek}</td>
-          <td class="border border-gray-300 py-2 px-4 text-center">
-            <input type="checkbox" ${isChecked ? 'checked' : ''} ${isPast || disableFutureAttendance(currentDate) ? 'disabled' : ''} onclick="markAttendance(${i}, this)">
-          </td>
         `;
+        const attendanceCell = document.createElement('td');
+        attendanceCell.classList.add('border', 'border-gray-300', 'py-2', 'px-4', 'text-center');
+        attendanceCell.appendChild(checkbox);
 
+        row.appendChild(attendanceCell);
         attendanceTable.appendChild(row);
       }
     }

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohort 3.O Tracker</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .completed {
+            background-color: #d4edda;
+        }
+    </style>
+    <script>
+        function showDateTime() {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('datetime').innerHTML = date.toLocaleDateString('en-US', options);
+        }
+        window.onload = showDateTime;
+    </script>
+</head>
+<body>
+
+<h2>Cohort 3.O Tracker</h2>
+<p id="datetime"></p>
+<table>
+    <tr>
+        <th>Week</th>
+        <th>Topic</th>
+        <th>Deadline</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>Week 1</td>
+        <td>Basics of JS</td>
+        <td>17-10-24</td>
+        <td class="completed">✅</td>
+    </tr>
+    <tr>
+        <td>Week 2</td>
+        <td>Async JS</td>
+        <td>17-10-24</td>
+        <td class="completed">✅</td>
+    </tr>
+    <tr>
+        <td>Week 2</td>
+        <td>Promises</td>
+        <td>17-10-24 / 18-10-24</td>
+        <td class="completed">✅</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>Bash commands</td>
+        <td>18-10-24</td>
+        <td class="completed">✅</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>Installing node.js</td>
+        <td>18-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>Solving Vs code assignment</td>
+        <td>18-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>Callback hell, Rejects and async await</td>
+        <td>18-10-24 / 19-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>DOM basic</td>
+        <td>19-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 3</td>
+        <td>DOM advanced</td>
+        <td>19-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 4</td>
+        <td>Node.js runtime</td>
+        <td>19-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 4</td>
+        <td>HTTP Server</td>
+        <td>19-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 4</td>
+        <td>Postman (offline)</td>
+        <td>20-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 4</td>
+        <td>Middleware’s</td>
+        <td>20-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 5</td>
+        <td>Headers, query params and Express</td>
+        <td>20-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 5</td>
+        <td>Middleware’s and Cors</td>
+        <td>20-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 5</td>
+        <td>Git and Github (offline)</td>
+        <td>21-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 5</td>
+        <td>Map, filter, and arrow functions</td>
+        <td>21-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 5</td>
+        <td>Axios and fetch</td>
+        <td>21-10-24 / 22-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 6</td>
+        <td>HTTP deep dive</td>
+        <td>22-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 6</td>
+        <td>Auth and connecting FE to BE</td>
+        <td>22-10-24 / 23-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 6</td>
+        <td>JWT and auth recap (offline)</td>
+        <td>23-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 6</td>
+        <td>Mongo installation</td>
+        <td>23-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 7</td>
+        <td>MongoDB</td>
+        <td>24-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 7</td>
+        <td>Password, ZOD</td>
+        <td>24-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 7</td>
+        <td>Backend of course selling app part - 1</td>
+        <td>25-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 7</td>
+        <td>Backend of course selling app part - 2</td>
+        <td>25-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 8</td>
+        <td>MongoDB deep dive</td>
+        <td>26-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 9</td>
+        <td>React Basics</td>
+        <td>27-10-24</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>Week 9</td>
+        <td>React Use state</td>
+        <td>27-10-24</td>
+        <td>-</td>
+    </tr>
+</table>
+<br>
+<center>
+    <h4 style="font-family: Verdana, Geneva, Tahoma, sans-serif;"><b><i>MANOHAR GELLA RESEARCH WORKS </i></b></h4>
+</center>
+
+</body>
+</html>

@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/.*",
-      "status": 404,
+      "status": "NOT_FOUND",
       "dest": "/404.html"
     }
   ]

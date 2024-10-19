@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Fap Streak Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .table-container {
+      max-height: 450px;
+      overflow-y: auto;
+    }
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      display: none;
+      z-index: 1000;
+    }
+    .popup.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup" class="popup">You can't do fool</div>
+
+  <div class="container">
+    <h1 class="text-3xl font-bold mb-6 text-center">Manohar's No Fap and Porn Streak Tracker</h1>
+    <div id="streak" class="text-center text-xl font-semibold text-green-600 mb-2">Current Streak: 0 Days</div>
+    <div id="missed" class="text-center text-xl font-semibold text-red-600 mb-4">Missed Days: 0</div>
+
+    <div class="table-container">
+      <table class="w-full table-auto border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200 text-lg">
+            <th class="border border-gray-300 py-2 px-4">Date</th>
+            <th class="border border-gray-300 py-2 px-4">Day</th>
+            <th class="border border-gray-300 py-2 px-4">Attendance</th>
+          </tr>
+        </thead>
+        <tbody id="attendanceTable">
+          <!-- Rows will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const startDate = new Date('2024-10-20'); // Starting date
+    const totalDays = 30;
+    let currentStreak = 0;
+    let missedDays = 0;
+
+    // Load saved data from localStorage
+    const savedStreak = localStorage.getItem('streak');
+    const savedMissedDays = localStorage.getItem('missedDays');
+    const savedAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
+
+    if (savedStreak) currentStreak = parseInt(savedStreak);
+    if (savedMissedDays) missedDays = parseInt(savedMissedDays);
+
+    const today = new Date();
+    const streakElement = document.getElementById('streak');
+    const missedElement = document.getElementById('missed');
+    const attendanceTable = document.getElementById('attendanceTable');
+    const popup = document.getElementById('popup');
+
+    // Function to show popup
+    function showPopup() {
+      popup.classList.add('show');
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 2000);
+    }
+
+    // Function to update streak and missed days
+    function updateTracker() {
+      streakElement.textContent = `Current Streak: ${currentStreak} Days`;
+      missedElement.textContent = `Missed Days: ${missedDays}`;
+    }
+
+    // Function to handle attendance marking via checkbox
+    function markAttendance(dayIndex, checkbox) {
+      const currentDate = new Date(startDate);
+      currentDate.setDate(currentDate.getDate() + dayIndex);
+
+      const attendanceDate = currentDate.toDateString();
+      const todayDate = today.toDateString();
+
+      // Prevent marking for future or past dates
+      if (currentDate > today || currentDate < today) {
+        checkbox.checked = false;
+        showPopup();
+        return;
+      }
+
+      // If checked, mark as 'Present', else mark as 'Missed'
+      if (checkbox.checked) {
+        savedAttendance[attendanceDate] = 'Present';
+        currentStreak++;
+      } else {
+        savedAttendance[attendanceDate] = 'Missed';
+        missedDays++;
+      }
+
+      // Save updated attendance and refresh streak and missed count
+      localStorage.setItem('attendance', JSON.stringify(savedAttendance));
+      localStorage.setItem('streak', currentStreak);
+      localStorage.setItem('missedDays', missedDays);
+
+      updateTracker();
+    }
+
+    // Function to disable future checkboxes
+    function disableFutureAttendance(currentDate) {
+      return currentDate > today;
+    }
+
+    // Function to populate table with 30 days
+    function populateTable() {
+      attendanceTable.innerHTML = ''; // Clear table first
+
+      for (let i = 0; i < totalDays; i++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(currentDate.getDate() + i);
+
+        const attendanceDate = currentDate.toDateString();
+        const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+        const status = savedAttendance[attendanceDate] || 'Not Marked';
+
+        const row = document.createElement('tr');
+        const isToday = currentDate.toDateString() === today.toDateString();
+        const isPast = currentDate < today;
+        const isChecked = savedAttendance[attendanceDate] === 'Present';
+
+        row.innerHTML = `
+          <td class="border border-gray-300 py-2 px-4 text-center">${currentDate.toLocaleDateString()}</td>
+          <td class="border border-gray-300 py-2 px-4 text-center">${dayOfWeek}</td>
+          <td class="border border-gray-300 py-2 px-4 text-center">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} ${isPast || disableFutureAttendance(currentDate) ? 'disabled' : ''} onclick="markAttendance(${i}, this)">
+          </td>
+        `;
+
+        attendanceTable.appendChild(row);
+      }
+    }
+
+    // Initial load
+    updateTracker();
+    populateTable();
+  </script>
+</body>
+</html>

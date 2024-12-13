@@ -95,6 +95,40 @@
         .card a:hover {
             background-color: #388e3c;
         }
+
+        .doc-list {
+            padding: 2rem;
+        }
+
+        .doc-list h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .doc-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doc-list li {
+            background-color: var(--card-color);
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .doc-list li a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .doc-list li a:hover {
+            color: #81c784;
+        }
     </style>
 </head>
 <body>
@@ -104,16 +138,16 @@
     </header>
     <main class="container">
         <div class="card">
-            <h2>AU Docs</h2>
-            <a href="docsAu.html" target="_blank">View</a>
+            <h2>Certificate 1</h2>
+            <a href="docs/certificate1.html">View</a>
         </div>
         <div class="card">
             <h2>Certificate 2</h2>
-            <a href="#" target="_blank">View</a>
+            <a href="docs/certificate2.html">View</a>
         </div>
         <div class="card">
             <h2>Other Docs</h2>
-            <a href="#" target="_blank">View</a>
+            <a href="docs/otherdocs.html">View</a>
         </div>
         <!-- Add more cards as needed -->
     </main>

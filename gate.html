@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manohar's GATE Exam Countdown</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes gradient-oscillation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body {
+      animation: gradient-oscillation 8s ease infinite;
+      background: linear-gradient(60deg, #2c3e50, #4ca1af);
+      background-size: 400% 400%;
+    }
+  </style>
+</head>
+<body class="h-screen flex items-center justify-center text-white">
+  <div class="text-center p-8 bg-gray-800/80 rounded-lg shadow-lg max-w-lg w-full">
+    <h1 class="text-4xl font-bold mb-6">Manohar's GATE Exam Countdown</h1>
+    <table class="table-auto w-full text-left text-lg">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-4 py-2">Exam Date</td>
+          <td class="border px-4 py-2" id="exam-date">February 1, 2026</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Days Left</td>
+          <td class="border px-4 py-2" id="days"></td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Hours Left</td>
+          <td class="border px-4 py-2" id="hours"></td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Minutes Left</td>
+          <td class="border px-4 py-2" id="minutes"></td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Seconds Left</td>
+          <td class="border px-4 py-2" id="seconds"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // JavaScript to calculate the remaining time
+    const examDate = new Date('2026-02-01T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeDifference = examDate - now;
+
+      if (timeDifference <= 0) {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        return;
+      }
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    updateCountdown(); // Initial call
+    setInterval(updateCountdown, 1000); // Update every second
+  </script>
+</body>
+</html>

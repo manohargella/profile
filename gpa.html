@@ -38,18 +38,18 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200 flex flex-col min-h-screen">
     <div class="flex-grow">
-        <div class="max-w-6xl mx-auto my-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-            <div class="flex justify-between items-center py-4 px-6 bg-primary-light dark:bg-primary-dark">
-                <h1 class="text-2xl font-bold text-white">Semester Grade Calculator</h1>
+        <div class="max-w-6xl mx-auto my-4 sm:my-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+            <div class="flex justify-between items-center py-4 px-4 sm:px-6 bg-primary-light dark:bg-primary-dark">
+                <h1 class="text-xl sm:text-2xl font-bold text-white">Semester Grade Calculator</h1>
                 <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
             </div>
-            <div class="p-6">
-                <div class="mb-6 flex flex-wrap justify-between items-center gap-4">
-                    <select id="semesterSelect" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+            <div class="p-4 sm:p-6">
+                <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <select id="semesterSelect" class="w-full sm:w-auto p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
                         <option value="1">Semester 1</option>
                         <option value="2">Semester 2</option>
                         <option value="3">Semester 3</option>
@@ -59,13 +59,13 @@
                         <option value="7">Semester 7</option>
                         <option value="8">Semester 8</option>
                     </select>
-                    <div>
-                        <button id="saveData" class="bg-primary-light dark:bg-primary-dark text-white px-4 py-2 rounded hover:bg-blue-600 dark:hover:bg-blue-500 mr-2">Save Data</button>
-                        <button id="loadData" class="bg-green-500 dark:bg-green-600 text-white px-4 py-2 rounded hover:bg-green-600 dark:hover:bg-green-500">Load Data</button>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button id="saveData" class="flex-1 sm:flex-none bg-primary-light dark:bg-primary-dark text-white px-4 py-2 rounded hover:bg-blue-600 dark:hover:bg-blue-500">Save Data</button>
+                        <button id="loadData" class="flex-1 sm:flex-none bg-green-500 dark:bg-green-600 text-white px-4 py-2 rounded hover:bg-green-600 dark:hover:bg-green-500">Load Data</button>
                     </div>
                 </div>
-                <div class="overflow-x-auto mb-6">
-                    <table class="w-full border-collapse">
+                <div class="overflow-x-auto mb-4 sm:mb-6">
+                    <table class="w-full border-collapse text-sm sm:text-base">
                         <thead>
                             <tr class="bg-gray-200 dark:bg-gray-700">
                                 <th class="border border-gray-300 dark:border-gray-600 p-2">Subjects</th>
@@ -80,9 +80,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                        <h2 class="text-xl font-semibold mb-2">Semester Summary</h2>
+                        <h2 class="text-lg sm:text-xl font-semibold mb-2">Semester Summary</h2>
                         <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
                             <p><span class="font-bold">Total Score: </span><span id="totalScore">0</span></p>
                             <p><span class="font-bold">Total Credits: </span><span id="totalCredits">0</span></p>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold mb-2">Cumulative GPA</h2>
+                        <h2 class="text-lg sm:text-xl font-semibold mb-2">Cumulative GPA</h2>
                         <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
                             <p><span class="font-bold">CGPA: </span><span id="cumulativeGpa">0</span></p>
                             <div class="mt-2">
@@ -105,14 +105,14 @@
         </div>
     </div>
     <footer class="bg-gray-200 dark:bg-gray-800 py-4 mt-8">
-        <div class="max-w-6xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto text-center px-4">
             <a href="https://github.com/Manohar-Gella" target="_blank" rel="noopener noreferrer" class="inline-block mb-2">
                 <span class="gradient-text font-bold text-lg">Manohar Git Projects</span>
             </a>
-            <p class="text-gray-600 dark:text-gray-400">manoharcodes@gmail.com</p>
+            <p class="text-gray-600 dark:text-gray-400 break-all">manoharcodes@gmail.com</p>
         </div>
     </footer>
-    <script src="gpa/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester Grade Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#60a5fa'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto my-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+        <div class="flex justify-between items-center py-4 px-6 bg-primary-light dark:bg-primary-dark">
+            <h1 class="text-2xl font-bold text-white">Semester Grade Calculator</h1>
+            <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-6">
+            <div class="mb-6 flex flex-wrap justify-between items-center gap-4">
+                <select id="semesterSelect" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+                <div>
+                    <button id="saveData" class="bg-primary-light dark:bg-primary-dark text-white px-4 py-2 rounded hover:bg-blue-600 dark:hover:bg-blue-500 mr-2">Save Data</button>
+                    <button id="loadData" class="bg-green-500 dark:bg-green-600 text-white px-4 py-2 rounded hover:bg-green-600 dark:hover:bg-green-500">Load Data</button>
+                </div>
+            </div>
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200 dark:bg-gray-700">
+                            <th class="border border-gray-300 dark:border-gray-600 p-2">Subjects</th>
+                            <th class="border border-gray-300 dark:border-gray-600 p-2">Credit</th>
+                            <th class="border border-gray-300 dark:border-gray-600 p-2">Grade Points</th>
+                            <th class="border border-gray-300 dark:border-gray-600 p-2">Grade Letter</th>
+                            <th class="border border-gray-300 dark:border-gray-600 p-2">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gradeTable">
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Semester Summary</h2>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                        <p><span class="font-bold">Total Score: </span><span id="totalScore">0</span></p>
+                        <p><span class="font-bold">Total Credits: </span><span id="totalCredits">0</span></p>
+                        <p><span class="font-bold">Semester GPA: </span><span id="semesterGpa">0</span></p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Cumulative GPA</h2>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                        <p><span class="font-bold">CGPA: </span><span id="cumulativeGpa">0</span></p>
+                        <div class="mt-2">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
+                                <div id="gpaMeter" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="gpa/script.js"></script>
+</body>
+</html>
+

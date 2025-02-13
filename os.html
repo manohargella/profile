@@ -1,42 +1,59 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>C Code Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        pre {
+            background: #282c34;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        #include <stdio.h>
-            #include <stdlib.h>
-            #include <errno.h>
-            #include <sys/types.h>
-            #include <unistd.h>
-            #define MAXLINE 16
-            
-            int main(){
-                int fd[2], n;
-                pid_t pid;
-                char line[MAXLINE];
-                if(pipe(fd) < 0){
-                    perror("Pipe error");
-                }
-                if((pid = fork()) < 0){
-                    perror("fork error");
-                }
-                else if (pid>0)
-                {
-                    close(fd[0]);
-                    write(fd[1], "Hello", 10);
-                }
-                else{
-                    close(fd[1]);
-                    n = read(fd[0], line, MAXLINE);
-                    write(STDOUT_FILENO, line, n);
-                }
-                exit(0);
-            }
-            
-            
-    </p>
+    <h2>C Code Example</h2>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+#define MAXLINE 16
+
+int main(){
+    int fd[2], n;
+    pid_t pid;
+    char line[MAXLINE];
+    if(pipe(fd) < 0){
+        perror("Pipe error");
+    }
+    if((pid = fork()) < 0){
+        perror("fork error");
+    }
+    else if (pid>0)
+    {
+        close(fd[0]);
+        write(fd[1], "Hello", 10);
+    }
+    else{
+        close(fd[1]);
+        n = read(fd[0], line, MAXLINE);
+        write(STDOUT_FILENO, line, n);
+    }
+    exit(0);
+}
+    </code></pre>
 </body>
 </html>

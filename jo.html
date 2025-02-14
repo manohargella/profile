@@ -34,8 +34,10 @@
     </style>
 </head>
 <body>
-    <h2>Shell Script</h2>
-    <pre id="code">
+    <h2>Shell Scripts</h2>
+    
+    <h3>Directory Management</h3>
+    <pre>
 echo "Directory Management"
 mkdir mydir
 echo "Directory 'mydir' created."
@@ -44,7 +46,10 @@ ls -l
 
 rmdir mydir
 echo "Directory 'mydir' deleted."
-
+    </pre>
+    
+    <h3>File Management</h3>
+    <pre>
 echo "File Management"
 touch myfile.txt
 echo "File 'myfile.txt' created."
@@ -53,7 +58,10 @@ ls -l myfile.txt
 
 rm myfile.txt
 echo "File 'myfile.txt' deleted."
-
+    </pre>
+    
+    <h3>Car Selection</h3>
+    <pre>
 echo "Car Selection"
 CARS="BMW"
 case "$CARS" in
@@ -64,7 +72,10 @@ case "$CARS" in
 #case 3
 "BMW") echo "Holland";;
 esac
-
+    </pre>
+    
+    <h3>Weekday Loop</h3>
+    <pre>
 echo "Weekday Loop"
 i=1
 weekday="mon tue wed thur fri sat"
@@ -72,7 +83,10 @@ for day in $weekday
 do
 echo "Weekday" $((i++)): "$day"
 done
-
+    </pre>
+    
+    <h3>Comparison Check</h3>
+    <pre>
 echo "Comparison Check"
 a=10
 b=20
@@ -80,13 +94,18 @@ if [ !a != !b ]; then
 echo "a is not equal to b"
 fi
     </pre>
+    
     <button onclick="copyCode()">Copy Code</button>
 
     <script>
         function copyCode() {
-            const codeElement = document.getElementById("code");
+            const codeBlocks = document.querySelectorAll("pre");
+            let allCode = "";
+            codeBlocks.forEach(block => {
+                allCode += block.innerText + "\n\n";
+            });
             const textArea = document.createElement("textarea");
-            textArea.value = codeElement.innerText;
+            textArea.value = allCode;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand("copy");

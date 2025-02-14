@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        pre {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+            overflow-x: auto;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Shell Script</h2>
+    <pre id="code">
+echo "Directory Management"
+mkdir mydir
+echo "Directory 'mydir' created."
+
+ls -l
+
+rmdir mydir
+echo "Directory 'mydir' deleted."
+
+echo "File Management"
+touch myfile.txt
+echo "File 'myfile.txt' created."
+
+ls -l myfile.txt
+
+rm myfile.txt
+echo "File 'myfile.txt' deleted."
+
+echo "Car Selection"
+CARS="BMW"
+case "$CARS" in
+#case 1
+"mercedes") echo "Germany";;
+#case 2
+"and") echo "Portland";;
+#case 3
+"BMW") echo "Holland";;
+esac
+
+echo "Weekday Loop"
+i=1
+weekday="mon tue wed thur fri sat"
+for day in $weekday
+do
+echo "Weekday" $((i++)): "$day"
+done
+
+echo "Comparison Check"
+a=10
+b=20
+if [ !a != !b ]; then
+echo "a is not equal to b"
+fi
+    </pre>
+    <button onclick="copyCode()">Copy Code</button>
+
+    <script>
+        function copyCode() {
+            const codeElement = document.getElementById("code");
+            const textArea = document.createElement("textarea");
+            textArea.value = codeElement.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("Code copied to clipboard!");
+        }
+    </script>
+</body>
+</html>

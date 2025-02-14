@@ -18,6 +18,8 @@
             border-radius: 5px;
             text-align: left;
             overflow-x: auto;
+            display: inline-block;
+            width: 80%;
         }
         button {
             margin-top: 10px;
@@ -31,13 +33,22 @@
         button:hover {
             background: #0056b3;
         }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h2>Shell Scripts</h2>
     
     <h3>Directory Management</h3>
-    <pre>
+    <pre id="code1">
 echo "Directory Management"
 mkdir mydir
 echo "Directory 'mydir' created."
@@ -47,9 +58,10 @@ ls -l
 rmdir mydir
 echo "Directory 'mydir' deleted."
     </pre>
+    <button onclick="copyCode('code1')">Copy Code</button>
     
     <h3>File Management</h3>
-    <pre>
+    <pre id="code2">
 echo "File Management"
 touch myfile.txt
 echo "File 'myfile.txt' created."
@@ -59,9 +71,10 @@ ls -l myfile.txt
 rm myfile.txt
 echo "File 'myfile.txt' deleted."
     </pre>
+    <button onclick="copyCode('code2')">Copy Code</button>
     
     <h3>Car Selection</h3>
-    <pre>
+    <pre id="code3">
 echo "Car Selection"
 CARS="BMW"
 case "$CARS" in
@@ -73,9 +86,10 @@ case "$CARS" in
 "BMW") echo "Holland";;
 esac
     </pre>
+    <button onclick="copyCode('code3')">Copy Code</button>
     
     <h3>Weekday Loop</h3>
-    <pre>
+    <pre id="code4">
 echo "Weekday Loop"
 i=1
 weekday="mon tue wed thur fri sat"
@@ -84,9 +98,10 @@ do
 echo "Weekday" $((i++)): "$day"
 done
     </pre>
+    <button onclick="copyCode('code4')">Copy Code</button>
     
     <h3>Comparison Check</h3>
-    <pre>
+    <pre id="code5">
 echo "Comparison Check"
 a=10
 b=20
@@ -94,18 +109,13 @@ if [ !a != !b ]; then
 echo "a is not equal to b"
 fi
     </pre>
+    <button onclick="copyCode('code5')">Copy Code</button>
     
-    <button onclick="copyCode()">Copy Code</button>
-
     <script>
-        function copyCode() {
-            const codeBlocks = document.querySelectorAll("pre");
-            let allCode = "";
-            codeBlocks.forEach(block => {
-                allCode += block.innerText + "\n\n";
-            });
+        function copyCode(id) {
+            const codeElement = document.getElementById(id);
             const textArea = document.createElement("textarea");
-            textArea.value = allCode;
+            textArea.value = codeElement.innerText;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand("copy");
@@ -113,5 +123,9 @@ fi
             alert("Code copied to clipboard!");
         }
     </script>
+    
+    <footer>
+        Manohar Git Project - All Rights Reserved
+    </footer>
 </body>
 </html>

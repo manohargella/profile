@@ -106,7 +106,7 @@ const semesterSubjects = {
                       step="0.1" 
                       onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 46"
                       value="${semesters[currentSemester][index]?.gradePoint || ""}"
-                      placeholder="0-10">
+                      >
               </td>
               <td class="border border-gray-300 dark:border-gray-600 p-2 grade-letter text-sm sm:text-base"></td>
               <td class="border border-gray-300 dark:border-gray-600 p-2 score text-sm sm:text-base">0</td>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>manohar.tech | Linked Pages</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+      --hover-bg: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #020617;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 1rem 1.2rem;
+      border-radius: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 160px;
+    }
+
+    .card:hover {
+      background: var(--hover-bg);
+      transform: translateY(-4px);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      flex-grow: 1;
+      color: #cbd5e1;
+    }
+
+    .card a {
+      margin-top: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #020617;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>manohar.tech - Linked Pages</h1>
+  </header>
+
+  <main id="cards-container">
+    <!-- JavaScript will generate cards here -->
+  </main>
+
+  <footer>
+    &copy; 2025 Manohar Gella. All rights reserved.
+  </footer>
+
+  <script>
+    const pages = [
+      { path: "https://manohar.tech/dev", title: "/dev", desc: "All the cohort codes of web dev." },
+      { path: "https://manohar.tech/cp", title: "/cp", desc: "Tle eliminator documentry." },
+      { path: "https://manohar.tech/gate", title: "/gate", desc: "Day count down." },
+      { path: "https://manohar.tech/ip", title: "/ip", desc: "My Ip Address." },
+      { path: "https://manohar.tech/js", title: "/js", desc: "JavaScript possible codes." },
+      { path: "https://manohar.tech/mern", title: "/mern", desc: "Mern stack possible notes notion." },
+      { path: "https://manohar.tech/path", title: "/path", desc: "Path of cohort extracted." },
+      { path: "https://manohar.tech/sheet", title: "/sheet", desc: "XL Time table." },
+      { path: "https://manohar.tech/slide", title: "/slide", desc: "Slides of cohort." },
+      { path: "https://manohar.tech/sq", title: "/sq", desc: "Sequence of gate chapters." },
+    ];
+
+    const container = document.getElementById("cards-container");
+
+    pages.forEach(page => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${page.title}</h2>
+        <p>${page.desc}</p>
+        <a href="${page.path}">Visit &rarr;</a>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

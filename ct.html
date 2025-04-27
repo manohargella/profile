@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compitetive Programming Tracker</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .completed {
+            background-color: #d4edda;
+        }
+    </style>
+    <script>
+        function showDateTime() {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('datetime').innerHTML = date.toLocaleDateString('en-US', options);
+        }
+        window.onload = showDateTime;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<h2>Compitetive Programming Tracker</h2>
+<p id="datetime"></p>
+<table border="1">
+    <tr>
+      <th>Date</th>
+      <th>Topic</th>
+      <th>Deadline</th>
+      <th>Status</th>
+    </tr>
+    <tr><td>01-05-2025</td><td>Introduction to CP</td><td>01-05-2025</td><td>-</td></tr>
+    <tr><td>02-05-2025</td><td>C++ begineer</td><td>02-05-2025</td><td>-</td></tr>
+    <tr><td>03-05-2025</td><td>Online judges with Coding</td><td>03-05-2025</td><td>-</td></tr>
+    <tr><td>04-05-2025</td><td>Local IDE setup for CP</td><td>04-05-2025</td><td>-</td></tr>
+    <tr><td>05-05-2025</td><td>Remedial Break</td><td>05-05-2025</td><td>-</td></tr>
+    <tr><td>06-05-2025</td><td>C++ Intermediatepattern printing</td><td>06-05-2025</td><td>-</td></tr>
+    <tr><td>07-05-2025</td><td>Remedial BreakC++ Advanced</td><td>07-05-2025</td><td>-</td></tr>
+    <tr><td>08-05-2025</td><td>Problem Solving</td><td>08-05-2025</td><td>-</td></tr>
+    <tr><td>09-05-2025</td><td>Remedial Break</td><td>09-05-2025</td><td>-</td></tr>
+    <tr><td>10-05-2025</td><td>Time and Space Complexity</td><td>10-05-2025</td><td>-</td></tr>
+    <tr><td>11-05-2025</td><td>Problem Solving</td><td>11-05-2025</td><td>-</td></tr>
+    <tr><td>12-05-2025</td><td>Remedial Beak</td><td>12-05-2025</td><td>-</td></tr>
+    <tr><td>13-05-2025</td><td>Math for CP Beginner</td><td>13-05-2025</td><td>-</td></tr>
+    <tr><td>14-05-2025</td><td>Problem Solving</td><td>14-05-2025</td><td>-</td></tr>
+    <tr><td>15-05-2025</td><td>Remedial Break</td><td>15-05-2025</td><td>-</td></tr>
+    <tr><td>16-05-2025</td><td>Math for CP Intermediate</td><td>16-05-2025</td><td>-</td></tr>
+    <tr><td>17-05-2025</td><td>Problem Solving</td><td>17-05-2025</td><td>-</td></tr>
+    <tr><td>18-05-2025</td><td>Remedial Break</td><td>18-05-2025</td><td>-</td></tr>
+    <tr><td>19-05-2025</td><td>Searching and Sorting</td><td>19-05-2025</td><td>-</td></tr>
+    <tr><td>20-05-2025</td><td>Problem Solving 1</td><td>20-05-2025</td><td>-</td></tr>
+    <tr><td>21-05-2025</td><td>Searching and sorting 2</td><td>21-05-2025</td><td>-</td></tr>
+    <tr><td>22-05-2025</td><td>Problem Solving 2</td><td>22-05-2025</td><td>-</td></tr>
+    <tr><td>23-05-2025</td><td>Remedial Break</td><td>23-05-2025</td><td>-</td></tr>
+    <tr><td>24-05-2025</td><td>Remedial Break</td><td>24-05-2025</td><td>-</td></tr>
+    <tr><td>25-05-2025</td><td>C++ STL</td><td>25-05-2025</td><td>-</td></tr>
+    <tr><td>26-05-2025</td><td>Problem Solving</td><td>26-05-2025</td><td>-</td></tr>
+    <tr><td>27-05-2025</td><td>Remedial Break</td><td>27-05-2025</td><td>-</td></tr>
+    <tr><td>28-05-2025</td><td>C++ STL Advanced</td><td>28-05-2025</td><td>-</td></tr>
+    <tr><td>29-05-2025</td><td>Strings & Problem Solving</td><td>29-05-2025</td><td>-</td></tr>
+    <tr><td>30-05-2025</td><td>Problem Solving</td><td>30-05-2025</td><td>-</td></tr>
+    <tr><td>31-05-2025</td><td>Remedial Break</td><td>31-05-2025</td><td>-</td></tr>
+    <tr><td>01-06-2025</td><td>Remedial Break</td><td>01-06-2025</td><td>-</td></tr>
+    <tr><td>02-06-2025</td><td>Debugging 1</td><td>02-06-2025</td><td>-</td></tr>
+    <tr><td>03-06-2025</td><td>Coming Mistakes in CP</td><td>03-06-2025</td><td>-</td></tr>
+    <tr><td>04-06-2025</td><td>Remedial Break</td><td>04-06-2025</td><td>-</td></tr>
+    <tr><td>05-06-2025</td><td>Hoe to perform well in contests</td><td>05-06-2025</td><td>-</td></tr>
+    <tr><td>06-06-2025</td><td>CP Template and snippets</td><td>06-06-2025</td><td>-</td></tr>
+    <tr><td>07-06-2025</td><td>Mathematical Thinking / proof of CP</td><td>07-06-2025</td><td>-</td></tr>
+    <tr><td>08-06-2025</td><td>Break</td><td>08-06-2025</td><td>-</td></tr>
+    <tr><td>09-06-2025</td><td>How to Improve Implementation</td><td>09-06-2025</td><td>-</td></tr>
+    <tr><td>10-06-2025</td><td>General Game Theory Techniques</td><td>10-06-2025</td><td>-</td></tr>
+    <tr><td>11-06-2025</td><td>Importance of Up solving</td><td>11-06-2025</td><td>-</td></tr>
+    <tr><td>12-06-2025</td><td>Break</td><td>12-06-2025</td><td>-</td></tr>
+    <tr><td>13-06-2025</td><td>How to Prepare for a contest</td><td>13-06-2025</td><td>-</td></tr>
+    <tr><td>14-06-2025</td><td>Recent OAs Ideas Discussin</td><td>14-06-2025</td><td>-</td></tr>
+    <tr><td>15-06-2025</td><td>Everything About Meta HackerCup</td><td>15-06-2025</td><td>-</td></tr>
+    <tr><td>16-06-2025</td><td>ICPC Session</td><td>16-06-2025</td><td>-</td></tr>
+    <tr><td>17-06-2025</td><td>Grind 1</td><td>17-06-2025</td><td>-</td></tr>
+    <tr><td>18-06-2025</td><td>Grind 2</td><td>18-06-2025</td><td>-</td></tr>
+    <tr><td>19-06-2025</td><td>Grind 3</td><td>19-06-2025</td><td>-</td></tr>
+    <tr><td>20-06-2025</td><td>Break</td><td>20-06-2025</td><td>-</td></tr>
+    <tr><td>21-06-2025</td><td>Grind 4</td><td>21-06-2025</td><td>-</td></tr>
+    <tr><td>22-06-2025</td><td>END</td><td>22-06-2025</td><td>-</td></tr>
+</table>
+  
+<br>
+<center>    
+    <h4 style="font-family: Verdana, Geneva, Tahoma, sans-serif;"><b><i>MANOHAR GELLA RESEARCH WORKS </i></b></h4>
+</center>
+
+</body>
+</html>

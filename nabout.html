@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manohar Gella</title>
+  <style>
+    /* Old school styling */
+    body {
+      font-family: "Times New Roman", Times, serif;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5dc; /* Light beige background */
+      color: #333;
+    }
+
+    .container {
+      border: 1px solid #999;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #999;
+      padding-bottom: 10px;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .profile-image {
+      border: 1px solid #333;
+      padding: 5px;
+      background-color: #fff;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .blink {
+      animation: blinker 1s linear infinite;
+      color: #cc0000;
+      font-weight: bold;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #00008B;
+    }
+
+    h2 {
+      color: #006400;
+      border-bottom: 1px solid #999;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+
+    .marquee {
+      background-color: #ffc;
+      padding: 5px;
+      margin: 10px 0;
+      border: 1px dashed #999;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee span {
+      display: inline-block;
+      animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav ul {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      background-color: #eee;
+      border: 1px solid #999;
+      justify-content: center;
+    }
+
+    nav li {
+      padding: 5px 15px;
+      border-right: 1px solid #999;
+    }
+
+    nav li:last-child {
+      border-right: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #00008B;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    ul.project-list li {
+      margin-bottom: 10px;
+    }
+
+    .counter {
+      text-align: center;
+      font-size: 0.8em;
+      margin-top: 30px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #999;
+      padding-top: 10px;
+    }
+
+    /* Old school table styling */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+
+    table, th, td {
+      border: 1px solid #999;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    /* Contact info styling */
+    .contact-info {
+      font-style: italic;
+    }
+
+    /* Email obfuscation for spam protection */
+    .email:before {
+      content: "email: ";
+    }
+    .email:after {
+      content: "@gmail.com";
+    }
+    
+    .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      border: 1px solid #999;
+      height: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .progress {
+      background-color: #4CAF50;
+      height: 20px;
+      text-align: center;
+      color: white;
+      font-size: 12px;
+      line-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Manohar Gella</h1>
+      <p>B.Tech Student, Computer Science and Engineering</p>
+      <p>Andhra University</p>
+    </header>
+
+    <div class="marquee">
+      <span>Intern at TechFest IIT Bomaby! | Won 4th place in International Robotics Competition 2021 | Looking for Summer Internship 2025 | </span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#home" onclick="showSection('home'); return false;">Home</a></li>
+        <li><a href="#education" onclick="showSection('education'); return false;">Education</a></li>
+        <li><a href="#projects" onclick="showSection('projects'); return false;">Projects</a></li>
+        <li><a href="#courses" onclick="showSection('courses'); return false;">Courses</a></li>
+        <li><a href="#skills" onclick="showSection('skills'); return false;">Skills</a></li>
+        <li><a href="#contact" onclick="showSection('contact'); return false;">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div id="home" class="section">
+      <div class="profile-container">
+        <img src="img/as.jpg" alt="Manohar Gella" class="profile-image">
+        <div>
+          <p>Welcome to my personal webpage!</p>
+          <p>I am a second-year undergraduate student in the Department of Computer Science and Engineering at Andhra University College of Engineering. My interests include web development, machine learning, and competitive programming.</p>
+          <p class="blink">Currently looking for Summer Internship 2025!</p>
+          <p class="contact-info">
+            Hostel: Mtea.H, Room 73<br>
+            Phone: +91-7981538699<br>
+            <span class="email">manohargella272</span><br>
+            <span>323506402148@andhrauniversity.edu.in</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="education" class="section">
+      <h2>Education</h2>
+      <ul>
+        <li><strong>B.Tech in Computer Science and Engineering</strong> (2023-2027)<br>
+            Andhra University College of Engineering<br>
+            CGPA: 7.96/10.0</li>
+      </ul>
+    </div>
+
+    <div id="projects" class="section">
+      <h2>Projects</h2>
+      <ul class="project-list">
+        <li><strong><a href="javascript:void(0)" onclick="showProjectDetails('Smart Attendance System')">Smart Attendance System using Face Recognition</a></strong> (Jan 2025 - Present)<br>
+            Developed a face recognition system using Python and OpenCV to automate attendance marking. Achieved 92% accuracy in real-time person identification.</li>
+        <li><strong><a href="javascript:void(0)" onclick="showProjectDetails('Distributed File System')">Distributed File System</a></strong> (Aug - Nov 2024)<br>
+            Implemented a scalable distributed file system with fault tolerance capabilities using C++ and gRPC.</li> 
+        <li><strong><a href="javascript:void(0)" onclick="showProjectDetails('E-commerce Web Application')">E-commerce Web Application</a></strong> (Jan - May 2024)<br>
+            Built a full-stack e-commerce application using MERN stack (MongoDB, Express.js, React, Node.js) with features like user authentication, product catalog, and payment integration.</li>
+        <li><strong><a href="javascript:void(0)" onclick="showProjectDetails('Traffic Prediction Model')">Traffic Prediction Model</a></strong> (Aug - Dec 2023)<br>
+            Created a machine learning model to predict traffic congestion using historical data. Implemented using Python, scikit-learn, and TensorFlow.</li>
+      </ul>
+    </div>
+
+    <div id="courses" class="section">
+      <h2>Relevant Coursework</h2>
+      <table>
+        <tr>
+          <th>Course Code</th>
+          <th>Course Name</th>
+          <th>Semester</th>
+          <th>Grade</th>
+        </tr>
+        <tr>
+          <td>CS301</td>
+          <td>Data Structures and Algorithms</td>
+          <td>Fall 2023</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>CS2203</td>
+          <td>Database Management Systems</td>
+          <td>Spring 2024</td>
+          <td>Ongoing</td>
+        </tr>
+        <tr>
+          <td>CS303</td>
+          <td>Operating Systems</td>
+          <td>Fall 2024</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>CS304</td>
+          <td>Computer Networks</td>
+          <td>Fall 2024</td>
+          <td>Ongoing</td>
+        </tr>
+        <tr>
+          <td>CS405</td>
+          <td>Machine Learning</td>
+          <td>Spring 2025</td>
+          <td>Ongoing</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="skills" class="section">
+      <h2>Technical Skills</h2>
+      <p><strong>Programming Languages:</strong></p>
+      <div class="skill-bar">
+        <p>C/C++</p>
+        <div class="progress-bar">
+          <div class="progress" style="width:90%">90%</div>
+        </div>
+        <p>Python</p>
+        <div class="progress-bar">
+          <div class="progress" style="width:85%">85%</div>
+        </div>
+        <p>Java</p>
+        <div class="progress-bar">
+          <div class="progress" style="width:75%">75%</div>
+        </div>
+        <p>JavaScript</p>
+        <div class="progress-bar">
+          <div class="progress" style="width:80%">80%</div>
+        </div>
+      </div>
+      
+      <p><strong>Frameworks & Tools:</strong></p>
+      <ul>
+        <li>React.js, Node.js, Express.js</li>
+        <li>TensorFlow, PyTorch, scikit-learn</li>
+        <li>Git, Docker, Linux</li>
+        <li>MySQL, MongoDB</li>
+      </ul>
+    </div>
+
+    <div id="achievements" class="section">
+      <h2>Achievements</h2>
+      <ul>
+        <li>Former Web Devlopment Intern at TechFest IIT Bombay</li>
+        <li>Finalist Eureka Juniors TechFest IIT Bombay (2021)</li>
+        <li>4th Place International Robotics Competition (2021)</li>
+        <li>Newbie rating on CodeForces</li>
+        <li>3-star rating on CodeChef</li>
+      </ul>
+    </div>
+
+    <div id="contact" class="section">
+      <h2>Contact</h2>
+      <p>
+        Manohar Gella<br>
+        Department of Computer Science and Engineering<br>
+        Andhra University College of Engineering<br>
+        Hostel Meta.H, Room 73<br>
+        Phone: +91-7981538699<br>
+        <span class="email">manohargella272</span>
+      </p>
+      
+      <p>
+        <strong>Social Links:</strong><br>
+        <a href="https://github.com/manohargella" target="_blank">GitHub</a> | 
+        <a href="https://www.linkedin.com/in/manohar-gella-2926bb24b/" target="_blank">LinkedIn</a> | 
+        <a href="https://codeforces.com/profile/ManoharGella" target="_blank">CodeForces</a> | 
+        <a href="https://leetcode.com/u/ManoharGella/" target="_blank">LeetCode</a>
+      </p>
+    </div>
+
+    <footer>
+      <p>Last updated: May 8, 2025 | This page is best viewed in 1024x768 resolution</p>
+    </footer>
+  </div>
+
+  <script>
+    // Simple visitor counter that increases on each visit
+    document.addEventListener('DOMContentLoaded', function() {
+      let count = localStorage.getItem('visitorCount') || 5372;
+      count = parseInt(count) + 1;
+      document.getElementById('visitor-count').textContent = count;
+      localStorage.setItem('visitorCount', count);
+      
+      // Show home section by default
+      showSection('home');
+    });
+
+    // Function to show section and scroll to it
+    function showSection(sectionId) {
+      // Scroll to the selected section
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Update nav link styles to highlight active link
+      const links = document.querySelectorAll('nav a');
+      links.forEach(link => {
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.style.fontWeight = 'bold';
+          link.style.color = '#cc0000';
+        } else {
+          link.style.fontWeight = 'normal';
+          link.style.color = '#00008B';
+        }
+      });
+
+      // Update URL without reloading page
+      window.history.pushState({}, '', `#${sectionId}`);
+    }
+
+    // Handle page load based on URL hash
+    window.addEventListener('load', function() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        showSection(hash);
+      } else {
+        showSection('home');
+      }
+    });
+
+    // Create a popup window for project details
+    function showProjectDetails(projectName) {
+      const width = 400;
+      const height = 300;
+      const left = (screen.width - width) / 2;
+      const top = (screen.height - height) / 2;
+      
+      const projectDetails = {
+        'Smart Attendance System': 'This project uses facial recognition to automate attendance marking. Built with Python, OpenCV, and deep learning models. Features include: real-time face detection, student database integration, and attendance report generation.',
+        'Distributed File System': 'A scalable distributed file system with fault tolerance. Implemented file chunking, replication, and recovery mechanisms. Used C++ and gRPC for inter-node communication.',
+        'E-commerce Web Application': 'Full-stack MERN application with user authentication, product catalog, cart functionality, and payment integration using Stripe API. Implemented responsive design and state management with Redux.',
+        'Traffic Prediction Model': 'Machine learning model to predict traffic congestion using historical data. Used LSTM neural networks for time-series forecasting. Achieved 87% prediction accuracy on test data.'
+      };
+      
+      const content = projectDetails[projectName] || 'Project details not available.';
+      
+      const newWindow = window.open('', projectName, `width=${width},height=${height},top=${top},left=${left}`);
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>${projectName}</title>
+            <style>
+              body { font-family: "Times New Roman", Times, serif; padding: 20px; background-color: #f5f5dc; }
+              h2 { color: #006400; }
+              .close-btn { 
+                background-color: #eee; 
+                border: 1px solid #999; 
+                padding: 5px 10px; 
+                cursor: pointer;
+                margin-top: 20px;
+              }
+            </style>
+          </head>
+          <body>
+            <h2>${projectName}</h2>
+            <p>${content}</p>
+            <button class="close-btn" onclick="window.close()">Close</button>
+          </body>
+        </html>
+      `);
+    }
+  </script>
+</body>
+</html>

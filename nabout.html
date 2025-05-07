@@ -195,6 +195,83 @@
       font-size: 12px;
       line-height: 20px;
     }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      .profile-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 160px;
+      }
+
+      .marquee {
+        padding: 3px;
+        margin: 5px 0;
+      }
+
+      .marquee span {
+        animation: marquee 12s linear infinite; /* Speed up for smaller screens */
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav li {
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+
+      p, ul, li {
+        font-size: 14px;
+      }
+
+      table th, table td {
+        padding: 5px;
+        font-size: 12px;
+      }
+
+      .progress-bar {
+        height: 15px;
+      }
+
+      .progress {
+        font-size: 10px;
+        line-height: 15px;
+      }
+
+      .counter, footer {
+        font-size: 0.7em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -336,10 +413,10 @@
     <div id="achievements" class="section">
       <h2>Achievements</h2>
       <ul>
-        <li>Former Web Devlopment Intern at TechFest IIT Bombay</li>
-        <li>Finalist Eureka Juniors TechFest IIT Bombay (2021)</li>
-        <li>4th Place International Robotics Competition (2021)</li>
-        <li>Newbie rating on CodeForces</li>
+        <li>Former Web Devlopment Intern at TechFest IIT Bombay</li> 
+        <li>Finalist Eureka Juniors TechFest IIT Bombay (2021)</li> 
+        <li>4th Place International Robotics Competition (2021)</li> 
+        <li>Newbie rating on CodeForces</li> 
         <li>3-star rating on CodeChef</li>
       </ul>
     </div>
@@ -362,6 +439,10 @@
         <a href="https://codeforces.com/profile/ManoharGella" target="_blank">CodeForces</a> | 
         <a href="https://leetcode.com/u/ManoharGella/" target="_blank">LeetCode</a>
       </p>
+    </div>
+
+    <div class="counter">
+      <p>Visitors: <span id="visitor-count">5372</span></p>
     </div>
 
     <footer>

@@ -1,12 +1,694 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manohar Gella - Data Structures & Algorithms</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #333;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.2em;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    .header .title {
+      font-size: 1.1em;
+      color: #666;
+      font-style: italic;
+    }
+
+    .nav {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.3em;
+      cursor: pointer;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .nav-links a {
+      color: #0066cc;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1em;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      margin: 30px 0;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 1.5em;
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      font-weight: normal;
+    }
+
+    .tabs {
+      margin: 20px 0;
+    }
+
+    .tab-buttons {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      color: #666;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab-btn.active {
+      color: #333;
+      border-bottom-color: #333;
+      font-weight: bold;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .topic {
+      margin-bottom: 15px;
+      border: 1px solid #eee;
+    }
+
+    .topic-header {
+      background: #f8f8f8;
+      padding: 12px 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topic-header:hover {
+      background: #f0f0f0;
+    }
+
+    .topic-header h3 {
+      font-size: 1.1em;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .dropdown-arrow {
+      font-size: 0.8em;
+      transition: transform 0.2s;
+    }
+
+    .topic.open .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .topic-content {
+      display: none;
+      padding: 15px;
+      background: #fafafa;
+    }
+
+    .topic.open .topic-content {
+      display: block;
+    }
+
+    .topic-content p {
+      margin-bottom: 10px;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 2px solid #333;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+    }
+
+    .contact-info h3,
+    .about-section h3 {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      font-weight: normal;
+    }
+
+    .contact-info p,
+    .about-section p {
+      font-size: 0.95em;
+      margin-bottom: 8px;
+    }
+
+    .about-section p {
+      line-height: 1.5;
+    }
+
+    .research-interests {
+      margin-top: 20px;
+    }
+
+    .research-interests ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .research-interests li {
+      margin-bottom: 5px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .research-interests li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+      }
+
+      .footer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .tab-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .topic-header {
+        padding: 10px;
+      }
+
+      .topic-header h3 {
+        font-size: 1em;
+      }
+
+      .topic-content {
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <center>
-        <h1>Under Build</h1>
-    </center>
+  <div class="header">
+    <h1>Manohar Gella</h1>
+    <div class="title">Data Structures & Algorithms Research</div>
+    <div class="title">Job Oriented</div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-toggle" onclick="toggleMenu()">☰ Menu</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="content">
+        <div class="section">
+            <h2>Data Structures & Algorithms Curriculum</h2>
+            
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showTab('basic')">Basic Concepts</button>
+                    <button class="tab-btn" onclick="showTab('advanced')">Advanced Topics</button>
+                </div>
+
+                <div id="basic" class="tab-content active">
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Language Basics</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Fundamental programming language concepts including syntax, semantics, and core programming paradigms essential for algorithm implementation.</p>
+                            <p><strong>Topics covered:</strong> Variable declarations, control structures, functions, memory management, and basic I/O operations.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Logic Building & Problem Solving</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Development of analytical thinking and systematic problem decomposition techniques for algorithmic problem solving.</p>
+                            <p><strong>Focus areas:</strong> Pattern recognition, debugging methodologies, and structured approach to complex problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Design Patterns</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Essential software design patterns for creating maintainable and scalable algorithmic solutions.</p>
+                            <p><strong>Key patterns:</strong> Singleton, Factory, Observer, Strategy, and Template Method patterns with practical implementations.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Time Complexity Analysis</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Comprehensive study of algorithm analysis using Big O notation and performance optimization techniques.</p>
+                            <p><strong>Concepts:</strong> Asymptotic analysis, best/average/worst case scenarios, and space complexity considerations.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>STL and Collections</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Standard Template Library components and built-in data structures for efficient programming.</p>
+                            <p><strong>Components:</strong> Vectors, maps, sets, queues, stacks, priority queues, and iterator patterns.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Concept Basics</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Foundational computer science concepts including abstract data types and algorithm design paradigms.</p>
+                            <p><strong>Core concepts:</strong> Abstraction, encapsulation, modularity, and computational thinking principles.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Basic Mathematics</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Mathematical foundations required for algorithm analysis and competitive programming.</p>
+                            <p><strong>Areas:</strong> Discrete mathematics, number theory, combinatorics, and basic probability theory.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Basic Arrays</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Array operations, multi-dimensional arrays, and fundamental array-based algorithms.</p>
+                            <p><strong>Operations:</strong> Traversal, insertion, deletion, searching, and basic sorting techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Basic Hashing</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Introduction to hash functions, collision resolution techniques, and hash table implementations.</p>
+                            <p><strong>Topics:</strong> Hash function design, collision handling strategies, and load factor optimization.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Basic Strings</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>String manipulation algorithms, pattern matching techniques, and text processing fundamentals.</p>
+                            <p><strong>Algorithms:</strong> String searching, palindrome detection, anagram identification, and basic pattern recognition.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Basic Recursion</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Recursive problem-solving techniques, base case identification, and recursive algorithm design.</p>
+                            <p><strong>Focus:</strong> Recursive thinking, stack behavior, and prevention of infinite recursion.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="advanced" class="tab-content">
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Sorting Algorithms</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Advanced sorting algorithms including merge sort, quick sort, heap sort, and their comparative analysis.</p>
+                            <p><strong>Coverage:</strong> Time complexity analysis, stability, and optimal use cases for different sorting methods.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Advanced Arrays</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Complex array algorithms including two-pointer techniques, sliding window, and advanced matrix operations.</p>
+                            <p><strong>Techniques:</strong> Kadane's algorithm, matrix exponentiation, and subarray problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Advanced Hashing</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Advanced hashing concepts including perfect hashing, bloom filters, and cryptographic applications.</p>
+                            <p><strong>Topics:</strong> Consistent hashing, rolling hash, and distributed hash tables.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Binary Search</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Binary search variations, search space optimization, and applications in competitive programming.</p>
+                            <p><strong>Applications:</strong> Lower bound, upper bound, ternary search, and optimization problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Advanced Recursion</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Complex recursive patterns, memoization techniques, and divide-and-conquer algorithms.</p>
+                            <p><strong>Concepts:</strong> Backtracking, dynamic programming foundations, and tree recursion.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Linked Lists</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Comprehensive study of linked list variations and their applications in system programming.</p>
+                            <p><strong>Types:</strong> Singly linked, doubly linked, circular lists, and advanced pointer manipulations.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Bit Manipulation</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Low-level bit operations for optimization and competitive programming applications.</p>
+                            <p><strong>Operations:</strong> Bitwise operators, bit masking, XOR properties, and efficient bit tricks.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Greedy Algorithms</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Greedy choice property and optimal substructure for efficient algorithm design.</p>
+                            <p><strong>Applications:</strong> Activity selection, Huffman coding, and minimum spanning tree algorithms.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Sliding Window</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Sliding window techniques for efficient array and string processing problems.</p>
+                            <p><strong>Patterns:</strong> Fixed-size window, variable-size window, and optimization problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Stacks & Queues</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Linear data structures with LIFO and FIFO properties and their practical applications.</p>
+                            <p><strong>Applications:</strong> Expression evaluation, BFS/DFS traversals, and system design patterns.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Binary Trees</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Tree data structures, traversal algorithms, and binary search tree operations.</p>
+                            <p><strong>Concepts:</strong> Tree traversals, BST properties, AVL trees, and tree construction problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Binary Search Trees</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Self-balancing binary search trees and their applications in database systems.</p>
+                            <p><strong>Types:</strong> AVL trees, Red-Black trees, and B-trees with insertion and deletion algorithms.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Heaps</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Heap data structure, priority queues, and heap-based algorithms.</p>
+                            <p><strong>Applications:</strong> Heap sort, k-largest elements, and graph algorithms like Dijkstra's.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Graphs</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Graph theory fundamentals, representation methods, and traversal algorithms.</p>
+                            <p><strong>Algorithms:</strong> BFS, DFS, shortest path algorithms, and minimum spanning trees.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Dynamic Programming</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Optimization technique using overlapping subproblems and optimal substructure properties.</p>
+                            <p><strong>Patterns:</strong> Fibonacci variants, knapsack problems, and sequence-based DP.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Tries</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Prefix tree data structure for efficient string operations and dictionary implementations.</p>
+                            <p><strong>Applications:</strong> Auto-complete systems, spell checkers, and IP routing tables.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Strings (Advanced)</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Advanced string algorithms including pattern matching and string processing techniques.</p>
+                            <p><strong>Algorithms:</strong> KMP, Rabin-Karp, Z-algorithm, and suffix array construction.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <div class="topic-header" onclick="toggleTopic(this)">
+                            <h3>Mathematics</h3>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p>Advanced mathematical concepts required for algorithm optimization and competitive programming.</p>
+                            <p><strong>Topics:</strong> Modular arithmetic, prime algorithms, and combinatorial mathematics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> imanohargella@gmail.com</p>
+            <p><strong>Office:</strong> - </p>
+            <p><strong>Phone:</strong> +91 - 798 153 8699</p>
+            <p><strong>Office Hours:</strong> - </p>
+            
+            <div style="margin-top: 20px;">
+                <p><strong>Mail Timing:</strong></p>
+                <p>Lectures: MWF 10:00-11:00 AM</p>
+                <p>Tutorial: Thu 3:00-4:00 PM</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h3>About</h3>
+            <p>I am a student  at Andhra University, specializing in computer science education. My work focuses on developing efficient algorithms for large-scale data processing and teaching methodologies for data structures and algorithms.</p>
+            
+            <div class="research-interests">
+                <h3>Research Interests</h3>
+                <ul>
+                    <li>Algorithm Design & Analysis</li>
+                    <li>Computational Complexity Theory</li>
+                    <li>Graph Algorithms</li>
+                    <li>Distributed Computing</li>
+                    <li>Educational Technology in CS</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+                Last updated: May 2025
+            </p>
+        </div>
+    </div>
+
+
+  <script>
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function toggleTopic(header) {
+      const topic = header.parentElement;
+      topic.classList.toggle('open');
+    }
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const firstTopics = document.querySelectorAll('.tab-content .topic:first-child');
+      firstTopics.forEach(topic => {
+        topic.classList.add('open');
+      });
+    });
+  </script>
 </body>
 </html>

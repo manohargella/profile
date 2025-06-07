@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 24px 32px;
+            border-bottom: 1px solid #1a1a1a;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.025em;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .auth-card {
+            background: #111111;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 48px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .auth-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        .auth-subtitle {
+            font-size: 14px;
+            color: #888888;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #cccccc;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #666666;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666666;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: #cccccc;
+        }
+
+        .security-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .security-option {
+            padding: 16px 12px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .security-option:hover {
+            border-color: #333333;
+            background: #151515;
+        }
+
+        .security-option.active {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .security-option .icon {
+            font-size: 18px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .security-option .label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #888888;
+        }
+
+        .security-option.active .label {
+            color: #3b82f6;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .login-button:hover {
+            background: #2563eb;
+        }
+
+        .login-button:active {
+            transform: translateY(1px);
+        }
+
+        .login-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .status-item {
+            padding: 16px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .status-text {
+            font-size: 13px;
+            color: #888888;
+            font-weight: 500;
+        }
+
+        .footer {
+            padding: 24px 32px;
+            border-top: 1px solid #1a1a1a;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+            padding: 32px;
+            background: #111111;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #1a1a1a;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 14px;
+            color: #888888;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            .header, .footer {
+                padding: 20px;
+            }
+            
+            .auth-card {
+                padding: 32px 24px;
+                margin: 0 20px;
+            }
+            
+            .security-options {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .status-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Manohar Gella Advanced MicroServices Systems</h1>
+    </header>
+
+    <main class="main-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2 class="auth-title">Secure Access</h2>
+                <p class="auth-subtitle">Authentication required for system access</p>
+            </div>
+
+            <form id="authForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        class="form-input" 
+                        placeholder="Enter username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Enter password"
+                            required
+                        >
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div class="security-options">
+                    <div class="security-option active" data-feature="encryption">
+                        <span class="icon">🔐</span>
+                        <span class="label">Encrypted</span>
+                    </div>
+                    <div class="security-option" data-feature="biometric">
+                        <span class="icon">👤</span>
+                        <span class="label">Biometric</span>
+                    </div>
+                    <div class="security-option" data-feature="2fa">
+                        <span class="icon">📱</span>
+                        <span class="label">2FA</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-button" id="loginButton">
+                    Authenticate
+                </button>
+            </form>
+
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span class="status-text">TLS Active</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span class="status-text">Secure Connection</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span class="status-text">MFA Ready</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span class="status-text">System Online</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Manohar Gella Advanced Backend Systems</p>
+    </footer>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Authenticating...</div>
+        </div>
+    </div>
+
+    <script>
+        // Password toggle functionality
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            passwordToggle.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+
+        // Security options toggle
+        const securityOptions = document.querySelectorAll('.security-option');
+        
+        securityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('active');
+            });
+        });
+
+        // Form submission
+        const authForm = document.getElementById('authForm');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loginButton = document.getElementById('loginButton');
+
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                // Show loading
+                loadingOverlay.style.display = 'flex';
+                loginButton.disabled = true;
+                
+                // Simulate authentication
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                    loginButton.disabled = false;
+                    
+                    // Reset form
+                    authForm.reset();
+                    
+                    // Show success (simple alert for this implementation)
+                    alert(`Authentication successful for ${username}`);
+                }, 2000);
+            }
+        });
+
+        // Input focus effects
+        const inputs = document.querySelectorAll('.form-input');
+        
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.transform = 'translateY(-1px)';
+            });
+            
+            input.addEventListener('blur', () => {
+                input.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+                const form = e.target.closest('form');
+                if (form) {
+                    form.requestSubmit();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

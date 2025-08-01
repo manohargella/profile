@@ -49,6 +49,9 @@
             padding: 20px;
             overflow: hidden; /* Prevents scrollbars from aurora effect */
             position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Animated Aurora Background Effect */
@@ -65,6 +68,7 @@
             filter: blur(100px);
             animation: animateAurora 15s infinite linear;
             z-index: -1;
+            will-change: transform;
         }
 
         @keyframes animateAurora {
@@ -205,21 +209,129 @@
         */
         @media (max-width: 480px) {
             :root {
-                --card-padding: 30px;
+                --card-padding: 25px;
             }
+            
+            body {
+                padding: 15px;
+                overflow: auto; /* Allow scrolling on mobile */
+            }
+            
+            .profile-card {
+                max-width: 100%;
+                margin: 0 auto;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            }
+            
             .profile-image-wrapper {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
+                margin-bottom: 20px;
             }
+            
             .name {
-                font-size: 1.875rem; /* 30px */
+                font-size: 1.75rem; /* 28px */
+                margin-bottom: 6px;
             }
+            
             .title {
                 font-size: 0.875rem; /* 14px */
+                margin-bottom: 25px;
             }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
             .social-icon {
-                width: 45px;
-                height: 45px;
+                width: 42px;
+                height: 42px;
+            }
+            
+            .social-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            :root {
+                --card-padding: 20px;
+            }
+            
+            .profile-image-wrapper {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .name {
+                font-size: 1.5rem; /* 24px */
+            }
+            
+            .title {
+                font-size: 0.8rem; /* 13px */
+            }
+            
+            .social-links {
+                gap: 12px;
+            }
+            
+            .social-icon {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .social-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+        
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .profile-card {
+                max-width: 350px;
+            }
+            
+            .profile-image-wrapper {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 15px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+            
+            .title {
+                font-size: 0.8rem;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            body::before {
+                opacity: 0.08; /* Reduce aurora intensity on mobile for better performance */
+                filter: blur(80px);
+            }
+            
+            .profile-card:hover::before {
+                opacity: 0; /* Disable glare effect on touch devices */
+            }
+            
+            .social-icon:hover {
+                transform: none; /* Disable hover effects on touch devices */
+            }
+            
+            .profile-image-wrapper:hover {
+                transform: none; /* Disable hover effects on touch devices */
             }
         }
     </style>
@@ -259,33 +371,59 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const profileCard = document.querySelector('.profile-card');
+        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-        // This function handles both the 3D tilt and the mouse glare effect.
-        profileCard.addEventListener('mousemove', (e) => {
+        // Function to handle 3D tilt and glare effect
+        function handleInteraction(e) {
             const rect = profileCard.getBoundingClientRect();
             
-            // Calculate mouse position relative to the card center
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+            // Get client coordinates (works for both mouse and touch)
+            const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+            const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+            
+            if (!clientX || !clientY) return;
+            
+            // Calculate position relative to the card center
+            const x = clientX - rect.left - rect.width / 2;
+            const y = clientY - rect.top - rect.height / 2;
 
-            // Define rotation range
-            const rotateX = (y / rect.height) * -20; // Max rotation 10 degrees
-            const rotateY = (x / rect.width) * 20;  // Max rotation 10 degrees
+            // Define rotation range (reduced for mobile)
+            const maxRotation = isTouchDevice ? 10 : 20;
+            const rotateX = (y / rect.height) * -maxRotation;
+            const rotateY = (x / rect.width) * maxRotation;
 
             // Apply 3D tilt transform
-            profileCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            profileCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
             
-            // Update CSS variables for the glare effect position
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            profileCard.style.setProperty('--mouse-x', `${mouseX}px`);
-            profileCard.style.setProperty('--mouse-y', `${mouseY}px`);
-        });
+            // Update CSS variables for the glare effect position (only on non-touch devices)
+            if (!isTouchDevice) {
+                const mouseX = clientX - rect.left;
+                const mouseY = clientY - rect.top;
+                profileCard.style.setProperty('--mouse-x', `${mouseX}px`);
+                profileCard.style.setProperty('--mouse-y', `${mouseY}px`);
+            }
+        }
 
-        // Reset the card's transform when the mouse leaves.
-        profileCard.addEventListener('mouseleave', () => {
+        // Function to reset the card
+        function resetCard() {
             profileCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-        });
+        }
+
+        // Mouse events (for desktop)
+        if (!isTouchDevice) {
+            profileCard.addEventListener('mousemove', handleInteraction);
+            profileCard.addEventListener('mouseleave', resetCard);
+        }
+
+        // Touch events (for mobile)
+        if (isTouchDevice) {
+            profileCard.addEventListener('touchstart', handleInteraction, { passive: true });
+            profileCard.addEventListener('touchmove', handleInteraction, { passive: true });
+            profileCard.addEventListener('touchend', resetCard);
+        }
+
+        // Add smooth transitions for better mobile experience
+        profileCard.style.transition = 'transform 0.1s ease-out';
     });
     </script>
 </body>
